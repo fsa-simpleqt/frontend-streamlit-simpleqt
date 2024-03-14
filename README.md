@@ -1,1 +1,1 @@
-# frontend-streamlit-simpleqt
+# Front-end Streamlit
