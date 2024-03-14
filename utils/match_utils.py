@@ -4,7 +4,7 @@ import re
 
 def get_cv():
     # Define the URL
-    url = "https://millmin-fsa-project-cv.hf.space/modules/crud_cvs_router/"
+    url = "https://tony2802-fsa-simpleqt.hf.space/modules/crud_cvs_router/"
     # Send a GET request
     response = requests.get(url)
     # Print the response content
@@ -12,7 +12,7 @@ def get_cv():
 
 def get_jd():
     # Define the URL
-    url = "https://millmin-fsa-project-cv.hf.space/modules/crud_jds_router/"
+    url = "https://tony2802-fsa-simpleqt.hf.space/modules/crud_jds_router/"
     # Send a GET request
     response = requests.get(url)
     # Print the response content
@@ -30,7 +30,7 @@ def match(id_jd, id_cv):
     id_jd_0 = re.search(r'\[(.*?)\]', id_jd).group(1)
     id_cv_0 = re.search(r'\[(.*?)\]', id_cv).group(1)
 
-    url = "https://millmin-fsa-project-cv.hf.space/modules/cvmatching/matching/"
+    url = "https://tony2802-fsa-simpleqt.hf.space/modules/cvmatching/"
     completed_url = f"{url.rstrip("/")}?id_jd={id_jd_0}&id_cv={id_cv_0}"
     response = requests.post(completed_url)
     return json.loads(response.content.decode("utf-8"))
