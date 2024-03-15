@@ -29,6 +29,7 @@ if cv_option is not None:
 
 if jd_option is not None and cv_option is not None:
     match_result = match(id_jd, id_cv)
+    
     st.success("Matching Completed")
 
     col1, col2, col3 = st.columns(3)
