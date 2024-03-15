@@ -72,8 +72,9 @@ with st.container():
                 if st.button(f"Download CV", key=cv["id_cv"], type="secondary"):
                     url_download = f"{BACKEND_URL_API}/modules/download_file_gs_link?gs_link={cv['cv_url']}"
                     response = requests.get(url_download)
+                    print(cv['cv_url'])
                     # Get the blob name from the gs link
-                    file_name = cv['cv_url'].split(f"gs://{FIREBASE_URL_STORAGEBUCKET}/")[1]
+                    file_name = cv['cv_url'].split(f"{FIREBASE_URL_STORAGEBUCKET}/")[1]
                     # Ensure response is successful
                     if response.status_code == 200:
                         st.download_button(label="Click here to download", data=response.content, file_name=file_name)

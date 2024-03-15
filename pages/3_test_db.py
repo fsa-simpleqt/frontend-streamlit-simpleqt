@@ -38,15 +38,6 @@ with st.container():
 
         submit_button = st.form_submit_button('Submit')
 
-        # if submit_button:
-        #     if not description or not role or not test_file:
-        #         st.error("Please fill in all fields")
-        #     else:
-        #         result = add_test(description, role, test_file)
-        #         if "message" in result:
-        #             st.success(result["message"])
-        #         else:
-        #             st.error(result["message"])
         if submit_button:
             if description and role and test_file:  # Check for all fields
                 result = add_test(description, role, test_file)

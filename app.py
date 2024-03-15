@@ -9,7 +9,8 @@ def main():
             Page("pages/2_cv_db.py", "CVs Database", "📄"),
             Page("pages/3_test_db.py", "Exam Database", "📜"),
             Page("pages/4_match.py", "CV Matcher", "🤝"),
-            Page("pages/5_retrieval.py", "Question Retrieval", "🔍")
+            Page("pages/5_retrieval.py", "Question Retrieval", "🔍"),
+            Page("pages/6_generate_questions.py", "Generate Questions", "❓")
         ]
     )
     st.header("Home")
