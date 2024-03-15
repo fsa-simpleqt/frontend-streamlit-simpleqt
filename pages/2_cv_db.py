@@ -6,6 +6,8 @@ import base64
 from utils.match_utils import get_jd, get_info_jd, slice_id
 from dotenv import load_dotenv
 
+st.set_page_config(page_title="CV Database")
+
 load_dotenv()
 
 os.environ["BACKEND_URL_API"] = os.getenv("BACKEND_URL_API")
@@ -30,7 +32,7 @@ def show_all_cv():
         return None
 
 def delete_user(cv_id):
-    # Gửi yêu cầu DELETE đến API để xóa người dùng
+    # Send DELETE request to API to delete the user
     response = requests.delete(f"{cv_url_route}{cv_id}")
     return response.json()
     
@@ -38,7 +40,7 @@ with st.container():
     st.header("Add CVs", divider="rainbow")
     with st.form(key='my_form'):
         st.write("Fill in the form to add a new CV")
-        name_candidate = st.text_input('Name Candidate')
+        name_candidate = st.text_input('Candidate Name')
         apply_jd_info = st.selectbox(
             "Select a Job Description from the Database",
             get_info_jd(get_jd()),
@@ -72,7 +74,6 @@ with st.container():
                 if st.button(f"Download CV", key=cv["id_cv"], type="secondary"):
                     url_download = f"{BACKEND_URL_API}/modules/download_file_gs_link?gs_link={cv['cv_url']}"
                     response = requests.get(url_download)
-                    print(cv['cv_url'])
                     # Get the blob name from the gs link
                     file_name = cv['cv_url'].split(f"{FIREBASE_URL_STORAGEBUCKET}/")[1]
                     # Ensure response is successful
@@ -84,7 +85,7 @@ with st.container():
                     result_delete = delete_user(cv['id_cv'])
                     if "message" in result_delete:
                         st.success(result_delete["message"])
-                        # refresh the page
+                        # Refresh the page
                         st.rerun()
     else:
         st.error("Error retrieving CVs")

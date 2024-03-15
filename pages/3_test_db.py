@@ -4,6 +4,8 @@ import os
 
 from dotenv import load_dotenv
 
+st.set_page_config(page_title="Question Database")
+
 load_dotenv()
 
 os.environ["BACKEND_URL_API"] = os.getenv("BACKEND_URL_API")

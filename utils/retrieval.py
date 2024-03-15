@@ -15,7 +15,6 @@ def get_jd():
     else:
         return None
 
-
 def get_info_jd(jd_list):
     info_jd_list = [f"{jd.get("position_applied_for")} [{jd.get("id_jd")}]" for jd in jd_list]
     return info_jd_list
@@ -34,16 +33,6 @@ def retrieve_test(id_test):
     response = requests.post(url)
     return json.loads(response.content.decode("utf-8"))
 
-
-# jd_option = st.selectbox(
-#     "Select a Job Description in the Database",
-#     get_info_jd(get_jd()),
-#     index=None,
-#     placeholder="Select a Job Description"
-# )
-
-# if jd_option is not None:
-#     id_jd = slice_id(jd_option)
-#     st.write(get_text_jd(get_jd(), id_jd))
-# else:
-#     st.info("Preview")
+def download_test(url):
+    response = requests.get(url)
+    return response.content
