@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+st.set_page_config(page_title="Job Description Database")
+
 os.environ["BACKEND_URL_API"] = os.getenv("BACKEND_URL_API")
 BACKEND_URL_API = os.environ.get("BACKEND_URL_API")
 
@@ -27,7 +29,7 @@ def show_all_jd():
         return None
 
 def delete_user(user_id):
-    # Gửi yêu cầu DELETE đến API để xóa người dùng
+    # Send DELETE request to API to delete the user
     response = requests.delete(f"{BACKEND_URL_API}/modules/crud_jds_router/{user_id}")
     return response.json()
     

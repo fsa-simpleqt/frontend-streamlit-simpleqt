@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.match_utils import get_jd, get_cv, get_info_jd, get_info_cv, get_text_jd, get_text_cv, slice_id, match, prettify_match
+from utils.match_utils import get_jd, get_cv, get_info_jd, get_info_cv, get_text_jd, slice_id, match
 
 st.set_page_config(page_title="CV Matcher")
 

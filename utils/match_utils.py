@@ -21,7 +21,6 @@ def get_cv():
     url = f"{BACKEND_URL_API}/modules/crud_cvs_router/"
     # Send a GET request
     response = requests.get(url)
-    print(response.content)  # Add this line
     # Print the response content
     return json.loads(response.content.decode("utf-8"))
 
@@ -55,13 +54,13 @@ def match(id_jd, id_cv):
     response = requests.post(completed_url)
     return json.loads(response.content.decode("utf-8"))
 
-def prettify_match(match):
-    overall_match = match.get("Overall Match Percentage:")
-    skills_match = match.get("Skills Match").get("Match Percentage")
-    experience_match = match.get("Experience Match").get("Match Percentage")
-    required_skills = match.get("Skills Match").get("Required Skills")
-    candidate_skills = match.get("Skills Match").get("Candidate  Skills")
-    required_experience = match.get("Experience Match").get("Required Experience")
-    candidate_experience = match.get("Experience Match").get("Candidate Experience")
-    explanation = match.get("Explanation")
-    return overall_match, skills_match, experience_match, required_skills, candidate_skills, required_experience, candidate_experience, explanation
+# def prettify_match(match):
+#     overall_match = match.get("Overall Match Percentage:")
+#     skills_match = match.get("Skills Match").get("Match Percentage")
+#     experience_match = match.get("Experience Match").get("Match Percentage")
+#     required_skills = match.get("Skills Match").get("Required Skills")
+#     candidate_skills = match.get("Skills Match").get("Candidate  Skills")
+#     required_experience = match.get("Experience Match").get("Required Experience")
+#     candidate_experience = match.get("Experience Match").get("Candidate Experience")
+#     explanation = match.get("Explanation")
+#     return overall_match, skills_match, experience_match, required_skills, candidate_skills, required_experience, candidate_experience, explanation
