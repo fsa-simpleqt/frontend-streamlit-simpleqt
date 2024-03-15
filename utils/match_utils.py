@@ -21,15 +21,17 @@ def get_cv():
     url = f"{BACKEND_URL_API}/modules/crud_cvs_router/"
     # Send a GET request
     response = requests.get(url)
+    print(response.content)  # Add this line
     # Print the response content
     return json.loads(response.content.decode("utf-8"))
 
+
 def get_info_jd(jd_list):
-    info_jd_list = [f"{jd.get("position_applied_for")} [{jd.get("id_jd")}]" for jd in jd_list]
+    info_jd_list = [f"{jd.get('position_applied_for')} [{jd.get('id_jd')}]" for jd in jd_list]
     return info_jd_list
 
 def get_info_cv(cv_list):
-    info_cv_list = [f"{cv.get("name_candidate")} - {cv.get("apply_position")} [{cv.get("id_cv")}]" for cv in cv_list]
+    info_cv_list = [f"{cv.get('name_candidate')} - {cv.get('apply_position')} [{cv.get('id_cv')}]" for cv in cv_list]
     return info_cv_list
 
 def get_text_jd(jd_list, id_jd):
@@ -49,7 +51,7 @@ def slice_id(info: str):
 
 def match(id_jd, id_cv):
     url = f"{BACKEND_URL_API}/modules/cvmatching/matching/"
-    completed_url = f"{url.rstrip("/")}?id_jd={id_jd}&id_cv={id_cv}"
+    completed_url = f"{url.rstrip('/')}?id_jd={id_jd}&id_cv={id_cv}"
     response = requests.post(completed_url)
     return json.loads(response.content.decode("utf-8"))
 
