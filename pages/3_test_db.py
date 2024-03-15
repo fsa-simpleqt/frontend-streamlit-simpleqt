@@ -11,8 +11,8 @@ BACKEND_URL_API = os.environ.get("BACKEND_URL_API")
 test_url_route = f"{BACKEND_URL_API}/modules/crud_question_tests_router/"
 
 def add_test(description, role, test_file):
-    data = {"question_tests_role": role, 'question_tests_description':description}
-    files = {"question_tests_url": test_file}
+    data = {"role": role, 'description':description}
+    files = {"file_question_tests": test_file}
     response = requests.post(test_url_route, data=data, files=files)
     return response.json()
 
@@ -38,16 +38,26 @@ with st.container():
 
         submit_button = st.form_submit_button('Submit')
 
+        # if submit_button:
+        #     if not description or not role or not test_file:
+        #         st.error("Please fill in all fields")
+        #     else:
+        #         result = add_test(description, role, test_file)
+        #         if "message" in result:
+        #             st.success(result["message"])
+        #         else:
+        #             st.error(result["message"])
         if submit_button:
-            if not description or not role or not test_file:
-                st.error("Please fill in all fields")
-            else:
+            if description and role and test_file:  # Check for all fields
                 result = add_test(description, role, test_file)
-                if "message" in result:
-                    st.success(result["message"])
+                if "detail" in result:  # Example of specific error handling
+                    for error in result['detail']:
+                        st.error(f"{error['loc']} : {error['msg']}")
                 else:
-                    st.error(result["message"])
-            
+                    st.success("Test added successfully!")
+            else:
+                st.error("Please fill in all fields")
+
 with st.container():
     #show all Tests
     st.header("All Test", divider="rainbow")
@@ -62,5 +72,7 @@ with st.container():
                     result_delete = delete_test(test['id'])
                     if "message" in result_delete:
                         st.success(result_delete["message"])
+                        # refresh the page
+                        st.rerun()
     else:
         st.error("Error retrieving tests")
