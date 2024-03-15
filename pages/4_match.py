@@ -29,15 +29,16 @@ if cv_option is not None:
 
 if jd_option is not None and cv_option is not None:
     match_result = match(id_jd, id_cv)
+    
     st.success("Matching Completed")
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Overall Match Percentage", f"{match_result.get("result").get("Overall Match Percentage:")}")
+        st.metric("Overall Match Percentage", f"{match_result.get('result').get('Overall Match Percentage:')}")
     with col2:
-        st.metric("Skills Match Percentage:", f"{match_result.get("result").get("Skills Match").get("Match Percentage")}")
+        st.metric("Skills Match Percentage:", f"{match_result.get('result').get('Skills Match').get('Match Percentage')}")
     with col3:
-        st.metric("Experience Match Percentage:", f"{match_result.get("result").get("Experience Match").get("Match Percentage")}")
+        st.metric("Experience Match Percentage:", f"{match_result.get('result').get('Experience Match').get('Match Percentage')}")
 
     st.subheader("Skills Match")
     st.write("• Required Skills")

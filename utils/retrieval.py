@@ -29,15 +29,21 @@ def get_text_jd(jd_list, id_jd):
             return jd.get("jd_text")
     return None
 
-jd_option = st.selectbox(
-    "Select a Job Description in the Database",
-    get_info_jd(get_jd()),
-    index=None,
-    placeholder="Select a Job Description"
-)
+def retrieve_test(id_test):
+    url = f"https://tony2802-fsa-simpleqt.hf.space/modules/qtretrieval/send_jd_to_get_question?id_jd={id_test}"
+    response = requests.post(url)
+    return json.loads(response.content.decode("utf-8"))
 
-if jd_option is not None:
-    id_jd = slice_id(jd_option)
-    st.write(get_text_jd(get_jd(), id_jd))
-else:
-    st.info("Preview")
+
+# jd_option = st.selectbox(
+#     "Select a Job Description in the Database",
+#     get_info_jd(get_jd()),
+#     index=None,
+#     placeholder="Select a Job Description"
+# )
+
+# if jd_option is not None:
+#     id_jd = slice_id(jd_option)
+#     st.write(get_text_jd(get_jd(), id_jd))
+# else:
+#     st.info("Preview")
