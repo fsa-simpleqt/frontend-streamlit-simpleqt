@@ -21,8 +21,10 @@ def get_cv():
     url = f"{BACKEND_URL_API}/modules/crud_cvs_router/"
     # Send a GET request
     response = requests.get(url)
+    print(response.content)  # Add this line
     # Print the response content
     return json.loads(response.content.decode("utf-8"))
+
 
 def get_info_jd(jd_list):
     info_jd_list = [f"{jd.get("position_applied_for")} [{jd.get("id_jd")}]" for jd in jd_list]
