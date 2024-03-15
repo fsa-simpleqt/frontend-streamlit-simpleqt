@@ -51,8 +51,10 @@ if jds:
         jd_text = get_text_jd(jds, id_jd)
 
         # Display the selected JD ID, position, and text
-        st.info(f"You selected: {jd_selected} with ID {id_jd}")
+        st.info(f"You selected: {jd_selected}")
         with st.expander('Preview'):
             st.write(f"JD Text: {jd_text}")
 else:
     st.error('Failed to fetch JDs')
+
+

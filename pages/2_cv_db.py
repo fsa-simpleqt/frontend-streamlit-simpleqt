@@ -3,8 +3,7 @@ import requests
 import os
 import base64
 
-from utils.match_utils import get_jd, get_info_jd
-
+from utils.match_utils import get_jd, get_info_jd, slice_id
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,17 +39,19 @@ with st.container():
     with st.form(key='my_form'):
         st.write("Fill in the form to add a new CV")
         name_candidate = st.text_input('Name Candidate')
-        apply_jd_id = st.selectbox(
+        apply_jd_info = st.selectbox(
             "Select a Job Description from the Database",
             get_info_jd(get_jd()),
             index=None,
             placeholder="Select a Job Description"
         )
+
         cv_file = st.file_uploader('Upload CV With .docx and .pdf file', type=['docx', 'pdf'])
 
         submit_button = st.form_submit_button('Submit')
 
         if submit_button:
+            apply_jd_id = slice_id(apply_jd_info)
             if not name_candidate or not apply_jd_id or not cv_file:
                 st.error("Please fill in all fields")
             else:
